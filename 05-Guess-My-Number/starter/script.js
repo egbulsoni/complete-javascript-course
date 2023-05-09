@@ -20,6 +20,10 @@ let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 let highscore = 0;
 
+const displayMessage = function (message) {
+  document.querySelector('.message').textContent = message;
+};
+
 document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
   console.log(guess, typeof guess);
@@ -28,11 +32,11 @@ document.querySelector('.check').addEventListener('click', function () {
   // '🍕 Correct Number!');
   // When there is no input
   if (!guess) {
-    document.querySelector('.message').textContent = '⛔ No number';
+    displayMessage('⛔ No number');
 
     // When player wins
   } else if (guess === secretNumber) {
-    document.querySelector('.message').textContent = '🍕 Correct Number!';
+    displayMessage('🍕 Correct Number!');
     document.querySelector('.number').textContent = secretNumber;
     document.querySelector('body').style.backgroundColor = '#60b347';
     document.querySelector('.number').style.width = '30rem';
@@ -42,18 +46,9 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.highscore').textContent = highscore;
     }
     // When guess is too high
-  } else if (guess > secretNumber) {
+  } else if (guess !== secretNumber) {
     if (score > 1) {
-      document.querySelector('.message').textContent = 'Too High!';
-      score--;
-      document.querySelector('.score').textContent = score;
-    } else {
-      document.querySelector('.message').textContent = '💥 You lost the game!';
-    }
-    // When guess is too low
-  } else if (guess < secretNumber) {
-    if (score > 1) {
-      document.querySelector('.message').textContent = 'Too low!';
+      displayMessage(guess > secretNumber ? 'Too High!' : 'Too low!');
       score--;
       document.querySelector('.score').textContent = score;
     } else {
@@ -62,7 +57,6 @@ document.querySelector('.check').addEventListener('click', function () {
   }
 });
 
-// aula 75 em diante
 // D:\2-Sites and resources\GetFreeCourses.Co-Udemy-The Complete JavaScript Course 2022 From Zero to Expert!\07 JavaScript in the Browser_ DOM and Events Fundamentals
 document.querySelector('.again').addEventListener('click', function () {
   score = 20;
@@ -73,5 +67,7 @@ document.querySelector('.again').addEventListener('click', function () {
   document.querySelector('.number').textContent = '?';
   document.querySelector('.guess').value = '';
   document.querySelector('body').style.backgroundColor = '#222';
-  document.querySelector.querySelector('.number').style.width = '15rem';
+  document.querySelector('.number').style.width = '15rem';
 });
+
+// 79 em diante
