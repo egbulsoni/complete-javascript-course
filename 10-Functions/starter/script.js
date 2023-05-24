@@ -1,5 +1,5 @@
 'use strict';
-
+/*
 const bookings = [];
 const createBooking = function (flightNum, numPassengers = 1, price = 199) {
   //   numPassengers = numPassengers || 1;
@@ -181,3 +181,47 @@ const addTaxRate = function (rate) {
 const addVAT2 = addTaxRate(0.23);
 console.log(addVAT2(100));
 console.log(addVAT2(23));
+*/
+const poll = {
+  question: 'What is your favourite programming language?',
+  options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
+  // This generates [0, 0, 0, 0]. More in the next section 😃
+  answers: new Array(4).fill(0),
+};
+
+const btnAnswer = document.querySelector('.poll');
+
+btnAnswer.addEventListener('click', function () {
+  let number = prompt(
+    'What is your favourite programming language?\n0: Javascript\n1: Python\n2: Rust\n3: C++\n(Write option number)'
+  );
+
+  poll.answers[number]++;
+});
+
+(function () {
+  console.log('This will never run again');
+})();
+
+(() => console.log('This will ALSO never run again'))();
+
+{
+  const isPrivate = 23;
+  var notPrivate = 46;
+}
+
+console.log(notPrivate);
+
+const secureBooking = function () {
+  let passengerCount = 0;
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
